@@ -8,15 +8,15 @@ using DataLayer.Repositories;
 
 namespace QuestRoomCatalog.DataLayer.UnitOfWork
 {
-    public interface IUnitOfWork<T>: IDisposable where T: class
+    public interface IUnitOfWork: IDisposable
     {
-        //Repository<Roles> RolesUowRepository { get; }
-        //Repository<Rating> RatingUowRepository { get; }
-        //Repository<Users> UsersUowRepository { get; }
-        //Repository<QuestsLogos> QuestsLogosUowRepository { get; }
-        //Repository<QuestsRooms> QuestsRoomsUowRepository { get; }
+        Repository<Roles> RolesUowRepository { get; }
+        Repository<Rating> RatingUowRepository { get; }
+        Repository<Users> UsersUowRepository { get; }
+        Repository<QuestsLogos> QuestsLogosUowRepository { get; }
+        Repository<QuestsRooms> QuestsRoomsUowRepository { get; }
 
-        Repository<T> GenericUowRepository { get; }
+        //Repository<T> GenericUowRepository { get; }
 
         void Save();
     }

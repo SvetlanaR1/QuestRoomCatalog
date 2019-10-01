@@ -7,11 +7,12 @@ using QuestRoomCatalog.DataLayer;
 
 namespace QuestRoomCatalog.DataLayer.UnitOfWork
 {
-    public class UnitOfWork<T> : IDisposable, IUnitOfWork<T> where T: class
+    public class UnitOfWork : IUnitOfWork
     {
         private Model1 db;
         private bool disposed = false;
-        Repository<T> _genericRepository;
+        Repository<QuestsLogos> _questsLogosUowRepository;
+        //Repository<T> _genericRepository;
 
         public UnitOfWork()
         {
@@ -19,16 +20,47 @@ namespace QuestRoomCatalog.DataLayer.UnitOfWork
         }
 
 
-        //public Repository<Authors> AuthorUowRepository
-        //{
-        //    get
-        //    {
+        public Repository<QuestsLogos> QuestsLogosUowRepository
+        {
+            get
+            {
+                if (this._questsLogosUowRepository == null)
+                    _questsLogosUowRepository = new Repository<QuestsLogos>(db);
+                return _questsLogosUowRepository;
+            }
+        }
 
-        //        if (this._authorUowRepository == null)
-        //            _authorUowRepository = new Repository<Authors>(db);
-        //        return _authorUowRepository;
-        //    }
-        //}
+        public Repository<Roles> RolesUowRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Repository<Rating> RatingUowRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Repository<Users> UsersUowRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Repository<QuestsRooms> QuestsRoomsUowRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         //public Repository<Books> BookUowRepository
         //{
@@ -54,7 +86,7 @@ namespace QuestRoomCatalog.DataLayer.UnitOfWork
         //{
         //    get
         //    {
-                
+
         //        if (this._rentUowRepository == null)
         //            _rentUowRepository = new Repository<Rent>(db);
         //        return _rentUowRepository;
@@ -72,15 +104,15 @@ namespace QuestRoomCatalog.DataLayer.UnitOfWork
         //    }
         //}
 
-        public Repository<T> GenericUowRepository
-        {
-            get
-            {
-                if (this._genericRepository == null)
-                    _genericRepository = new Repository<T>(db);
-                return _genericRepository;
-            }
-        }
+        //public Repository<T> GenericUowRepository
+        //{
+        //    get
+        //    {
+        //        if (this._genericRepository == null)
+        //            _genericRepository = new Repository<T>(db);
+        //        return _genericRepository;
+        //    }
+        //}
 
         public void Save()
         {

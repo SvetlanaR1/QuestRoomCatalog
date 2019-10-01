@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuestRoomCatalog.BusinessLayer.BusinessObjects;
+using QuestRoomCatalog.BusinessLayer.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,12 @@ namespace QuestRoomCatalog.Controllers
 {
     public class QuestLogosController : Controller
     {
+        ICrud<QuestsLogosBO> questLogosBO;
+
+        public QuestLogosController(ICrud<QuestsLogosBO> questLogosBO)
+        {
+            this.questLogosBO = questLogosBO;
+        }
         // GET: QuestLogos
         public ActionResult Index()
         {
